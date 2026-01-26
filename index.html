@@ -464,6 +464,7 @@ section + section {
 
 .category-section {
     padding: var(--space-2xl) 0;
+    border: none;
 }
 
 .category-section:first-of-type {
@@ -472,6 +473,65 @@ section + section {
 
 .category-section + .category-section {
     border-top: 1px solid var(--color-border);
+}
+
+.category-section summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.category-section summary::-webkit-details-marker {
+    display: none;
+}
+
+.category-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition-fast);
+}
+
+.category-section summary:hover .section-header {
+    border-bottom-color: var(--color-accent);
+}
+
+.category-section .section-header__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--color-border-strong);
+    background-color: var(--color-bg-subtle);
+    transition: all var(--transition-fast);
+}
+
+.category-section .section-header__toggle::after {
+    content: '+';
+    font-weight: 700;
+    font-size: var(--text-sm);
+}
+
+.category-section summary:hover .section-header__toggle {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.category-section[open] .section-header__toggle {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+    color: var(--color-bg);
+}
+
+.category-section[open] .section-header__toggle::after {
+    content: '−';
+}
+
+.category-section .articles-grid {
+    margin-top: var(--space-xl);
 }
 
 
@@ -744,8 +804,8 @@ section + section {
         <section class="hero">
             <div class="container">
                 <div class="hero__content">
-                    <p class="hero__label">Jornalista de Dados</p>
                     <h1 class="hero__title">Daniel Mariani</h1>
+                    <p class="hero__bio">Jornalismo de dados</p>
                 </div>
             </div>
         </section>
@@ -758,10 +818,13 @@ section + section {
                 </header>
 
                 <!-- Cultura & Música -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Cultura & Música <span class="section-header__count">5</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Cultura & Música <span class="section-header__count">5</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -848,13 +911,16 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
                 <!-- Enem / Educação -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Enem & Educação <span class="section-header__count">2</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Enem & Educação <span class="section-header__count">2</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -898,13 +964,16 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
                 <!-- Ideologia & Política -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Ideologia & Política <span class="section-header__count">7</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Ideologia & Política <span class="section-header__count">7</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -1019,13 +1088,16 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
                 <!-- Mercado -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Mercado <span class="section-header__count">2</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Mercado <span class="section-header__count">2</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -1058,13 +1130,16 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
                 <!-- Cotidiano -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Cotidiano <span class="section-header__count">3</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Cotidiano <span class="section-header__count">3</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -1115,13 +1190,16 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
                 <!-- Saúde -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Saúde <span class="section-header__count">1</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Saúde <span class="section-header__count">1</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -1141,13 +1219,16 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
                 <!-- Esporte -->
-                <div class="category-section">
-                    <header class="section-header">
-                        <h3 class="section-header__title">Esporte <span class="section-header__count">2</span></h3>
-                    </header>
+                <details class="category-section">
+                    <summary>
+                        <header class="section-header">
+                            <h3 class="section-header__title">Esporte <span class="section-header__count">2</span></h3>
+                            <span class="section-header__toggle">Ver artigos</span>
+                        </header>
+                    </summary>
 
                     <div class="articles-grid">
                         <article class="article-card">
@@ -1182,7 +1263,7 @@ section + section {
                             </div>
                         </article>
                     </div>
-                </div>
+                </details>
 
             </div>
         </section>
@@ -1194,11 +1275,6 @@ section + section {
                     <h2 class="section-header__title">Contato</h2>
                 </header>
                 <div class="contact__inner">
-                    <div class="contact__info">
-                        <p class="contact__text">
-                            Interessado em colaborações, dados ou pautas? Entre em contato.
-                        </p>
-                    </div>
                     <form class="contact-form" action="https://formspree.io/f/xnjdqlga" method="POST">
                         <div class="form-group">
                             <label class="form-label" for="name">Nome</label>
