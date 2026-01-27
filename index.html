@@ -279,6 +279,30 @@ section + section {
     letter-spacing: -0.02em;
 }
 
+.section-header--main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expand-all-btn {
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border-strong);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.expand-all-btn:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
 .section-header__count {
     font-weight: 400;
     color: var(--color-text-tertiary);
@@ -815,6 +839,7 @@ section + section {
             <div class="container">
                 <header class="section-header section-header--main">
                     <h2 class="section-header__title">Trabalhos Selecionados</h2>
+                    <button class="expand-all-btn" id="expandAllBtn">Expandir todos</button>
                 </header>
 
                 <!-- Cultura & Música -->
@@ -1338,5 +1363,20 @@ section + section {
             </p>
         </div>
     </footer>
+
+    <script>
+        const expandAllBtn = document.getElementById('expandAllBtn');
+        const allDetails = document.querySelectorAll('.category-section');
+
+        expandAllBtn.addEventListener('click', function() {
+            const allExpanded = [...allDetails].every(d => d.open);
+
+            allDetails.forEach(detail => {
+                detail.open = !allExpanded;
+            });
+
+            expandAllBtn.textContent = allExpanded ? 'Expandir todos' : 'Recolher todos';
+        });
+    </script>
 </body>
 </html>
