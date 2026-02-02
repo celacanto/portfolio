@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Daniel Mariani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+:root {
+    --color-bg: #ffffff;
+    --color-bg-subtle: #f8f8f8;
+    --color-text: #1a1a1a;
+    --color-text-secondary: #666666;
+    --color-text-tertiary: #999999;
+    --color-accent: #e63946;
+    --color-accent-hover: #c1121f;
+    --color-border: #e5e5e5;
+    --color-border-strong: #d0d0d0;
+
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'IBM Plex Serif', Georgia, serif;
+
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+    --text-sm: clamp(0.8125rem, 0.75rem + 0.3vw, 0.875rem);
+    --text-base: clamp(0.9375rem, 0.875rem + 0.3vw, 1rem);
+    --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+
+    --max-width: 72rem;
+    --content-width: 48rem;
+    --nav-height: 4rem;
+
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+}
+
+.nav__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav__logo {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    letter-spacing: -0.03em;
+}
+
+.nav__logo span {
+    color: var(--color-accent);
+}
+
+.nav__links {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.nav__link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav__link:hover {
+    color: var(--color-text);
+}
+
+.nav__link--active {
+    color: var(--color-text);
+}
+
+.nav__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+    .nav__links {
+        gap: var(--space-lg);
+    }
+
+    .nav__link {
+        font-size: var(--text-xs);
+    }
+}
+
+.page-header {
+    padding: var(--space-3xl) 0;
+    border-bottom: 3px solid var(--color-text);
+}
+
+.page-header__title {
+    font-size: var(--text-2xl);
+    letter-spacing: -0.02em;
+}
+
+.articles-list {
+    max-width: var(--content-width);
+    padding: var(--space-2xl) 0 var(--space-4xl);
+}
+
+.article-card {
+    display: block;
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: all var(--transition-base);
+}
+
+.article-card:last-child {
+    border-bottom: none;
+}
+
+.article-card:hover {
+    padding-left: var(--space-md);
+    border-left: 3px solid var(--color-accent);
+    margin-left: calc(-1 * var(--space-md) - 3px);
+}
+
+.article-card__date {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+}
+
+.article-card__title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: var(--space-sm);
+    transition: color var(--transition-fast);
+}
+
+.article-card:hover .article-card__title {
+    color: var(--color-accent);
+}
+
+.article-card__description {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 42rem;
+}
+
+.article-card__image {
+    width: auto;
+    max-width: 100%;
+    max-height: 300px;
+    height: auto;
+    margin-top: var(--space-md);
+    border: 1px solid var(--color-border);
+}
+
+.footer {
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg-subtle);
+}
+
+.footer__copyright {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+
+    .article-card:hover {
+        padding-left: var(--space-sm);
+        margin-left: calc(-1 * var(--space-sm) - 3px);
+    }
+}
+
+.password-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-gate__box {
+    text-align: center;
+    max-width: 20rem;
+    padding: var(--space-xl);
+}
+
+.password-gate__title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+}
+
+.password-gate__text {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.password-gate__input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border-strong);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-sm);
+}
+
+.password-gate__input:focus {
+    outline: none;
+    border-color: var(--color-text);
+}
+
+.password-gate__btn {
+    width: 100%;
+    padding: var(--space-sm);
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.password-gate__btn:hover {
+    background: var(--color-accent);
+}
+
+.password-gate__error {
+    color: var(--color-accent);
+    font-size: var(--text-xs);
+    margin-top: var(--space-sm);
+    display: none;
+}
+
+.page-hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="password-gate" id="gate">
+        <div class="password-gate__box">
+            <h1 class="password-gate__title">Acesso restrito</h1>
+            <p class="password-gate__text">Esta página ainda não foi publicada.</p>
+            <input class="password-gate__input" type="password" id="gatePwd" placeholder="Senha" autofocus>
+            <button class="password-gate__btn" id="gateBtn">Entrar</button>
+            <p class="password-gate__error" id="gateErr">Senha incorreta</p>
+        </div>
+    </div>
+
+    <nav class="nav page-hidden">
+        <div class="container nav__inner">
+            <a href="index.html" class="nav__logo">DM<span>.</span></a>
+            <div class="nav__links">
+                <a href="index.html#trabalhos" class="nav__link">Trabalhos</a>
+                <a href="blog.html" class="nav__link nav__link--active">Blog</a>
+                <a href="index.html#contato" class="nav__link">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-hidden">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-header__title">Blog</h1>
+            </header>
+
+            <div class="articles-list">
+                <a href="roblox.html" class="article-card">
+                    <div class="article-card__date">Janeiro 2025</div>
+                    <h2 class="article-card__title">50 milhões de crianças e um CEO entram em um cassino</h2>
+                    <p class="article-card__description">Como a seleção algorítmica transformou a Roblox em máquina de aposta infantil, monetizando frustração e compulsão</p>
+                    <img src="images/roblox-cover.png" alt="Roblox e cassino" class="article-card__image">
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer page-hidden">
+        <div class="container">
+            <p class="footer__copyright">
+                &copy; 2025 Daniel Mariani. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+<script>
+(function() {
+    var KEY = 'blog_auth';
+    var PWD = 'latimera_92';
+    var gate = document.getElementById('gate');
+
+    function unlock() {
+        gate.style.display = 'none';
+        document.querySelectorAll('.page-hidden').forEach(function(el) { el.classList.remove('page-hidden'); });
+        sessionStorage.setItem(KEY, '1');
+    }
+
+    if (sessionStorage.getItem(KEY) === '1') { unlock(); return; }
+
+    document.getElementById('gateBtn').addEventListener('click', function() {
+        if (document.getElementById('gatePwd').value === PWD) { unlock(); }
+        else { document.getElementById('gateErr').style.display = 'block'; }
+    });
+    document.getElementById('gatePwd').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') document.getElementById('gateBtn').click();
+    });
+})();
+</script>
+</body>
+</html>
