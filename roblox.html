@@ -539,5 +539,20 @@ monetizando frustração e compulsão</p>
     });
 })();
 </script>
+<script>
+// Pause other videos when one starts playing
+(function() {
+    var videos = document.querySelectorAll('video');
+    videos.forEach(function(video) {
+        video.addEventListener('play', function() {
+            videos.forEach(function(other) {
+                if (other !== video && !other.paused) {
+                    other.pause();
+                }
+            });
+        });
+    });
+})();
+</script>
 </body>
 </html>
